@@ -19,7 +19,7 @@
         "build": "tsc -p .",
         "build:watch": "npm run build -- -w",
         "test": "mocha",
-        "coverage": "c8 --check-coverage --all --lines 70 --functions 5 --branches 70 npm --silent run test -- --no-parallel --reporter min"
+        "coverage": "c8 --check-coverage --all --lines 95 --functions 95 --branches 80 npm --silent run test -- --no-parallel --reporter min"
     },
     "eslintConfig": {
         "extends": [
@@ -43,7 +43,9 @@
             "immutable/no-mutation": "off",
             "fp/no-mutation": "off",
             "fp/no-this": "off",
-            "immutable/no-this": "off"
+            "immutable/no-this": "off",
+
+            "spellcheck/spell-checker": "warn"
         }
     },
     "mocha": {

@@ -12,9 +12,11 @@ const TWO = 2
  **/
 export class BitSmush {
   private static assertNonOverlapping(_smushMap: SmushMap) {
+    console.warn(' -- skip overlapping check')
   }
 
   private static assertOrdered(_smushMap: SmushMap) {
+    console.warn(' -- skip ordered check')
   }
 
   private static assertSmushMap(smushMap: SmushMap) {
@@ -47,7 +49,8 @@ export class BitSmush {
         const mask = BitSmush.mask(length)
         const value = sourceData[idx]
         const shift = position + ONE - length
-        return (accum & ~(mask << shift)) | ((value  & mask) << shift)
+
+        return (accum & ~(mask << shift)) | ((value & mask) << shift)
       }, ZERO)
   }
 
