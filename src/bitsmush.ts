@@ -12,11 +12,11 @@ const TWO = 2
  **/
 export class BitSmush {
   private static assertNonOverlapping(_smushMap: SmushMap) {
-    console.warn(' -- skip overlapping check')
+    // console.warn(' -- skip overlapping check')
   }
 
   private static assertOrdered(_smushMap: SmushMap) {
-    console.warn(' -- skip ordered check')
+    // console.warn(' -- skip ordered check')
   }
 
   private static assertSmushMap(smushMap: SmushMap) {
