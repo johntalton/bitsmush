@@ -65,7 +65,7 @@ export class BitSmush {
     return (bits >> shift) & mask
   }
 
-  static mask(length: number) {
+  static mask(length: number): number {
     return Math.pow(TWO, length) - ONE
   }
 }
