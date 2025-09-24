@@ -1,6 +1,6 @@
 {
   "name": "@johntalton/bitsmush",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "typescript": "^5.9.2"
+  },
+  "repository": {
+    "url": "https://github.com/johntalton/bitsmush"
   }
 }
