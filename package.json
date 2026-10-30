@@ -21,6 +21,6 @@
     "typescript": "^7.0.2"
   },
   "repository": {
-    "url": "https://github.com/johntalton/bitsmush"
+    "url": "git+https://github.com/johntalton/bitsmush.git"
   }
 }
