@@ -5,12 +5,12 @@
       "incremental": true,
 
       "target": "ESNext",
-      "module": "ESNext",
+      "module": "nodenext",
       "lib": ["ESNext"],
 
       "esModuleInterop": true,
       "isolatedModules": false,
-      "moduleResolution": "node",
+      "moduleResolution": "nodenext",
 
       "skipLibCheck": true,
 
@@ -38,6 +38,7 @@
       "pretty": true,
       "sourceMap": true,
 
+      "rootDir": "./src",
       "outDir": "./lib"
     },
     "compileOnSave": true,

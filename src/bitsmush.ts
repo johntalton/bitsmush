@@ -1,15 +1,12 @@
-// pack map and its reverse
 export const SMUSH_MAP_8_BIT_NAMES = [7, 6, 5, 4, 3, 2, 1, 0]
 
-export type SmushOffsetLength = [number, number]
-export type SmushMap = Array<SmushOffsetLength>
+export type SmushOffsetLength = readonly [number, number]
+export type SmushMap = readonly SmushOffsetLength[]
 
 const ZERO = 0
 const ONE = 1
 const TWO = 2
-/**
- *
- **/
+
 export class BitSmush {
   private static assertNonOverlapping(_smushMap: SmushMap) {
     // console.warn(' -- skip overlapping check')
@@ -42,21 +39,21 @@ export class BitSmush {
     BitSmush.assertNonOverlapping(smushMap)
   }
 
-  static smushBits(smushMap: SmushMap, sourceData: Array<number>): number {
+  static smushBits<T extends SmushMap>(smushMap: readonly [...T], sourceData: { [K in keyof T]: number }): number {
     BitSmush.assertSmushMap(smushMap)
     return smushMap
-      .reduce((accum, [position, length], idx) => {
+      .reduce((acc, [position, length], idx) => {
         const mask = BitSmush.mask(length)
         const value = sourceData[idx]
         const shift = position + ONE - length
 
-        return (accum & ~(mask << shift)) | ((value & mask) << shift)
+        return (acc & ~(mask << shift)) | ((value & mask) << shift)
       }, ZERO)
   }
 
-  static unSmushBits(smushMap: SmushMap, bits: number): Array<number> {
+  static unSmushBits<T extends SmushMap>(smushMap: readonly [...T], bits: number): { [K in keyof T] -?: number }  {
     BitSmush.assertSmushMap(smushMap)
-    return smushMap.map(([position, length]) => BitSmush.extractBits(bits, position, length))
+    return smushMap.map(([position, length]) => BitSmush.extractBits(bits, position, length)) as any
   }
 
   static extractBits(bits: number, position: number, length: number): number {

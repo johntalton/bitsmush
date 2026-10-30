@@ -1,6 +1,6 @@
 {
   "name": "@johntalton/bitsmush",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -18,7 +18,7 @@
     "build:watch": "npm run build -- -w"
   },
   "devDependencies": {
-    "typescript": "^5.9.2"
+    "typescript": "^7.0.2"
   },
   "repository": {
     "url": "https://github.com/johntalton/bitsmush"

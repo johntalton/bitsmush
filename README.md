@@ -5,6 +5,9 @@ Convenience methods when working with binary packed data.
 [![npm Version](https://img.shields.io/npm/v/@johntalton/bitsmush.svg)](https://www.npmjs.com/package/@johntalton/bitsmush)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/johntalton/bitsmush)
 [![CI](https://github.com/johntalton/bitsmush/actions/workflows/CI.yml/badge.svg)](https://github.com/johntalton/bitsmush/actions/workflows/CI.yml)
+![GitHub](https://img.shields.io/github/license/johntalton/bitsmush)
+[![Downloads Per Month](http://img.shields.io/npm/dm/@johntalton/bitsmush.svg)](https://www.npmjs.com/package/@johntalton/bitsmush)
+![GitHub last commit](https://img.shields.io/github/last-commit/johntalton/bitsmush)
 
 ## Motivation
 
