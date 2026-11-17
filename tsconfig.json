@@ -24,6 +24,15 @@
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
       "forceConsistentCasingInFileNames": true,
+
+      "erasableSyntaxOnly": true,
+
+      "allowUnreachableCode": false,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+
       "allowJs": false,
 
       "removeComments": false,

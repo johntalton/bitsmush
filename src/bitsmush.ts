@@ -1,26 +1,27 @@
+/** biome-ignore-all lint/suspicious/noBitwiseOperators: that is the point */
+const ZERO = 0
+const ONE = 1
+const TWO = 2
+
 export const SMUSH_MAP_8_BIT_NAMES = [7, 6, 5, 4, 3, 2, 1, 0]
 
 export type SmushOffsetLength = readonly [number, number]
 export type SmushMap = readonly SmushOffsetLength[]
 
-const ZERO = 0
-const ONE = 1
-const TWO = 2
-
 export class BitSmush {
-  private static assertNonOverlapping(_smushMap: SmushMap) {
+  private static assertNonOverlapping(_smushMap: SmushMap): void {
     // console.warn(' -- skip overlapping check')
   }
 
-  private static assertOrdered(_smushMap: SmushMap) {
+  private static assertOrdered(_smushMap: SmushMap): void {
     // console.warn(' -- skip ordered check')
   }
 
-  private static assertSmushMap(smushMap: SmushMap) {
+  private static assertSmushMap(smushMap: SmushMap): void {
 
     if(!Array.isArray(smushMap)) { throw new Error('smushMap is not an Array') }
 
-    smushMap.forEach(smush => {
+    for(const smush of smushMap) {
       if(!Array.isArray(smush)) { throw new Error('smush is not an Array') }
       if(smush.length !== 2) { throw new Error('smush not exactly two items: offset / length') }
 
@@ -33,7 +34,7 @@ export class BitSmush {
 
       const shift = offset - length + ONE
       if(shift < ZERO) { throw new Error('smush shift less then zero') }
-    })
+    }
 
     BitSmush.assertOrdered(smushMap)
     BitSmush.assertNonOverlapping(smushMap)
@@ -47,22 +48,25 @@ export class BitSmush {
         const value = sourceData[idx]
         const shift = position + ONE - length
 
+        if(value === undefined) { throw new Error('source contains undefined values') }
         return (acc & ~(mask << shift)) | ((value & mask) << shift)
       }, ZERO)
   }
 
-  static unSmushBits<T extends SmushMap>(smushMap: readonly [...T], bits: number): { [K in keyof T] -?: number }  {
+  static unSmushBits<T extends SmushMap>(smushMap: readonly [...T], bits: number): { -readonly [K in keyof T] -?: number }  {
     BitSmush.assertSmushMap(smushMap)
-    return smushMap.map(([position, length]) => BitSmush.extractBits(bits, position, length)) as any
+    return smushMap.map(([position, length]) => BitSmush.extractBits(bits, position, length)) as unknown as { -readonly [K in keyof T] -?: number }
   }
 
   static extractBits(bits: number, position: number, length: number): number {
     const shift = position - length + ONE
+    if(shift < 0) { throw new RangeError('negative shift unsupported') }
     const mask = BitSmush.mask(length)
     return (bits >> shift) & mask
   }
 
   static mask(length: number): number {
+    if(length < 0) { throw new RangeError('negative mask not allowed') }
     return Math.pow(TWO, length) - ONE
   }
 }

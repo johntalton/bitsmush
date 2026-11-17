@@ -1,6 +1,6 @@
 {
   "name": "@johntalton/bitsmush",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -15,9 +15,14 @@
   ],
   "scripts": {
     "build": "tsc -p .",
-    "build:watch": "npm run build -- -w"
+    "build:watch": "npm run build -- -w",
+    "lint": "biome check",
+    "test": "node --test test/**/*.test.js",
+    "coverage": "c8 --src src --check-coverage --statements 100 --branches 93 --functions 100 --lines 100 -r lcovonly -r text node --test test/**/*.test.js"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "c8": "^12.0.0",
     "typescript": "^7.0.2"
   },
   "repository": {
